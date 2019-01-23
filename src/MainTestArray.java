@@ -17,7 +17,7 @@ public class MainTestArray {
         r2.uuid = "uuid2";
         r3.uuid = "uuid3";
         r4.uuid = "uuid4";
-        r3.uuid = "uuid5";
+        r5.uuid = "uuid5";
     }
 
     public static void main(String[] args) {
@@ -47,20 +47,24 @@ public class MainTestArray {
 
     private static void testSave() {
         fillData();
-        for (int i = 1; i <= initSize; i++) {
+        String uuidForSave = "uuid6";
+        Resume resumeForSave = new Resume();
+        resumeForSave.uuid = uuidForSave;
+        arrayStorage.save(resumeForSave);
+        for (int i = 1; i <= initSize + 1; i++) {
             if (!arrayStorage.storage[i - 1].uuid.equals("uuid" + i)) {
                 System.out.println("method save contains mistakes");
                 break;
             }
         }
-        for (int i = initSize; i < arrayStorage.storage.length; i++) {
+        for (int i = initSize + 1; i < arrayStorage.storage.length; i++) {
             if (arrayStorage.storage[i] != null) {
                 System.out.println("method save contains mistakes");
                 break;
             }
         }
         if (arrayStorage.size() != initSize + 1) {
-            System.out.println("method clear contains mistakes");
+            System.out.println("method save contains mistakes");
         }
     }
 
