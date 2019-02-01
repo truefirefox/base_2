@@ -33,6 +33,7 @@ public class MainTestArray {
 
     private static void testClear() {
         fillData();
+
         arrayStorage.clear();
         for (Resume resume : arrayStorage.storage) {
             if (resume != null) {
@@ -47,10 +48,11 @@ public class MainTestArray {
 
     private static void testSave() {
         fillData();
-        String uuidForSave = "uuid6";
+
         Resume resumeForSave = new Resume();
-        resumeForSave.uuid = uuidForSave;
+        resumeForSave.uuid = "uuid6";
         arrayStorage.save(resumeForSave);
+
         for (int i = 1; i <= initSize + 1; i++) {
             if (!arrayStorage.storage[i - 1].uuid.equals("uuid" + i)) {
                 System.out.println("method save contains mistakes");
@@ -70,8 +72,16 @@ public class MainTestArray {
 
     private static void testGet() {
         fillData();
+
         for (int i = 1; i <= initSize; i++) {
-            if (!arrayStorage.get("uuid" + i).uuid.equals("uuid" + i)) {
+            Resume resume = arrayStorage.get("uuid" + i);
+
+            if (resume == null) {
+                System.out.println("method get contains mistakes");
+                break;
+            }
+
+            if (!resume.uuid.equals("uuid" + i)) {
                 System.out.println("method get contains mistakes");
                 break;
             }
@@ -83,6 +93,7 @@ public class MainTestArray {
 
     private static void testDelete() {
         fillData();
+
         String uuidForDelete = "uuid1";
         arrayStorage.delete(uuidForDelete);
         if (arrayStorage.size() != initSize - 1 || arrayStorage.get(uuidForDelete) != null || arrayStorage.storage[initSize - 1] != null) {
@@ -92,6 +103,7 @@ public class MainTestArray {
 
     private static void testGetAll() {
         fillData();
+
         Resume[] resumes = new Resume[]{r1, r2, r3, r4, r5};
         if (!Arrays.equals(resumes, arrayStorage.getAll())) {
             System.out.println("method getAll contains mistakes");
@@ -100,6 +112,7 @@ public class MainTestArray {
 
     private static void testSize() {
         fillData();
+
         if (arrayStorage.size() != initSize) {
             System.out.println("method size contains mistakes");
         }
