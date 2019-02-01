@@ -1,3 +1,8 @@
+package ru.javawebinar.basejava;
+
+import ru.javawebinar.basejava.model.Resume;
+import ru.javawebinar.basejava.storage.ArrayStorage;
+
 import java.util.Arrays;
 
 public class MainTestArray {
@@ -13,15 +18,21 @@ public class MainTestArray {
     private static Resume r5 = new Resume();
 
     static {
-        r1.uuid = "uuid1";
-        r2.uuid = "uuid2";
-        r3.uuid = "uuid3";
-        r4.uuid = "uuid4";
-        r5.uuid = "uuid5";
+        r1.setUuid("uuid1");
+        r2.setUuid("uuid2");
+        r3.setUuid("uuid3");
+        r4.setUuid("uuid4");
+        r5.setUuid("uuid5");
+        r1.setFullName("Full Name 1");
+        r2.setFullName("Full Name 2");
+        r3.setFullName("Full Name 3");
+        r4.setFullName("Full Name 4");
+        r5.setFullName("Full Name 5");
     }
 
     public static void main(String[] args) {
 
+        testUpdate();
         testClear();
         testDelete();
         testSave();
@@ -31,11 +42,17 @@ public class MainTestArray {
 
     }
 
+    private static void testUpdate() {
+        fillData();
+        //todo testUpdate()
+    }
+
+
     private static void testClear() {
         fillData();
 
         arrayStorage.clear();
-        for (Resume resume : arrayStorage.storage) {
+        for (Resume resume : arrayStorage.getStorage()) {
             if (resume != null) {
                 System.out.println("method clear contains mistakes");
                 break;
@@ -50,17 +67,17 @@ public class MainTestArray {
         fillData();
 
         Resume resumeForSave = new Resume();
-        resumeForSave.uuid = "uuid6";
+        resumeForSave.setUuid("uuid6");
         arrayStorage.save(resumeForSave);
 
         for (int i = 1; i <= initSize + 1; i++) {
-            if (!arrayStorage.storage[i - 1].uuid.equals("uuid" + i)) {
+            if (!arrayStorage.getStorage()[i - 1].getUuid().equals("uuid" + i)) {
                 System.out.println("method save contains mistakes");
                 break;
             }
         }
-        for (int i = initSize + 1; i < arrayStorage.storage.length; i++) {
-            if (arrayStorage.storage[i] != null) {
+        for (int i = initSize + 1; i < arrayStorage.getStorage().length; i++) {
+            if (arrayStorage.getStorage()[i] != null) {
                 System.out.println("method save contains mistakes");
                 break;
             }
@@ -81,7 +98,7 @@ public class MainTestArray {
                 break;
             }
 
-            if (!resume.uuid.equals("uuid" + i)) {
+            if (!resume.getUuid().equals("uuid" + i)) {
                 System.out.println("method get contains mistakes");
                 break;
             }
@@ -96,7 +113,7 @@ public class MainTestArray {
 
         String uuidForDelete = "uuid1";
         arrayStorage.delete(uuidForDelete);
-        if (arrayStorage.size() != initSize - 1 || arrayStorage.get(uuidForDelete) != null || arrayStorage.storage[initSize - 1] != null) {
+        if (arrayStorage.size() != initSize - 1 || arrayStorage.get(uuidForDelete) != null || arrayStorage.getStorage()[initSize - 1] != null) {
             System.out.println("method delete contains mistakes");
         }
     }
