@@ -42,27 +42,6 @@ public class MainTestArray {
 
     }
 
-    private static void testUpdate() {
-        fillData();
-        //todo testUpdate()
-    }
-
-
-    private static void testClear() {
-        fillData();
-
-        arrayStorage.clear();
-        for (Resume resume : arrayStorage.getStorage()) {
-            if (resume != null) {
-                System.out.println("method clear contains mistakes");
-                break;
-            }
-        }
-        if (arrayStorage.size() != 0) {
-            System.out.println("method clear contains mistakes");
-        }
-    }
-
     private static void testSave() {
         fillData();
 
@@ -108,13 +87,42 @@ public class MainTestArray {
         }
     }
 
+
+    private static void testUpdate() {
+        fillData();
+
+        Resume resumeForUpdate = new Resume();
+        resumeForUpdate.setUuid("uuid1");
+        resumeForUpdate.setFullName("updated");
+        arrayStorage.update(resumeForUpdate);
+
+        if (arrayStorage.size() != initSize || arrayStorage.get("uuid1") == null || !arrayStorage.get("uuid1").equals(resumeForUpdate)) {
+            System.out.println("method update contains mistakes");
+        }
+    }
+
     private static void testDelete() {
         fillData();
 
         String uuidForDelete = "uuid1";
         arrayStorage.delete(uuidForDelete);
-        if (arrayStorage.size() != initSize - 1 || arrayStorage.get(uuidForDelete) != null || arrayStorage.getStorage()[initSize - 1] != null) {
+        if (arrayStorage.size() != initSize - 1 || arrayStorage.getStorage()[initSize - 1] != null) {
             System.out.println("method delete contains mistakes");
+        }
+    }
+
+    private static void testClear() {
+        fillData();
+
+        arrayStorage.clear();
+        for (Resume resume : arrayStorage.getStorage()) {
+            if (resume != null) {
+                System.out.println("method clear contains mistakes");
+                break;
+            }
+        }
+        if (arrayStorage.size() != 0) {
+            System.out.println("method clear contains mistakes");
         }
     }
 
