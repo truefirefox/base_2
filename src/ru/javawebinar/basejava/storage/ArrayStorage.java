@@ -6,18 +6,8 @@ import java.util.Arrays;
 
 public class ArrayStorage {
 
-    private Resume[] storage = new Resume[10000];
+    private Resume[] storage = new Resume[10_000];
     private int size = 0;
-
-    //todo update
-    public void update(Resume resume) {
-        //TODO check if resume is present
-    }
-
-    public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
-    }
 
     public void save(Resume resume) {
         //TODO check if resume is not present & check storage overflow
@@ -35,6 +25,11 @@ public class ArrayStorage {
         return null;
     }
 
+    //todo update
+    public void update(Resume resume) {
+        //TODO check if resume is present
+    }
+
     public void delete(String uuid) {
         //TODO check if resume is present
         for (int i = 0; i < size; i++) {
@@ -45,6 +40,11 @@ public class ArrayStorage {
                 break;
             }
         }
+    }
+
+    public void clear() {
+        Arrays.fill(storage, 0, size, null);
+        size = 0;
     }
 
     public Resume[] getAll() {

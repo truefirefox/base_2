@@ -23,20 +23,20 @@ public class MainTestArray {
         r3.setUuid("uuid3");
         r4.setUuid("uuid4");
         r5.setUuid("uuid5");
-        r1.setFullName("Full Name 1");
-        r2.setFullName("Full Name 2");
-        r3.setFullName("Full Name 3");
-        r4.setFullName("Full Name 4");
-        r5.setFullName("Full Name 5");
+        r1.setFullName("FullName1");
+        r2.setFullName("FullName2");
+        r3.setFullName("FullName3");
+        r4.setFullName("FullName4");
+        r5.setFullName("FullName5");
     }
 
     public static void main(String[] args) {
 
-        testUpdate();
-        testClear();
-        testDelete();
         testSave();
         testGet();
+        testUpdate();
+        testDelete();
+        testClear();
         testGetAll();
         testSize();
 
