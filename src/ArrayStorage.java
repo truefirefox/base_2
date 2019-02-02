@@ -2,16 +2,11 @@ import java.util.Arrays;
 
 public class ArrayStorage {
 
-    Resume[] storage = new Resume[10000];
+    Resume[] storage = new Resume[10_000];
     int size = 0;
 
-    void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
-    }
-
-    void save(Resume r) {
-        storage[size] = r;
+    void save(Resume resume) {
+        storage[size] = resume;
         size++;
     }
 
@@ -35,6 +30,10 @@ public class ArrayStorage {
         }
     }
 
+    void clear() {
+        Arrays.fill(storage, 0, size, null);
+        size = 0;
+    }
 
     Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, size);

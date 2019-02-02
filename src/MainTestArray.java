@@ -22,28 +22,13 @@ public class MainTestArray {
 
     public static void main(String[] args) {
 
-        testClear();
-        testDelete();
         testSave();
         testGet();
+        testDelete();
+        testClear();
         testGetAll();
         testSize();
 
-    }
-
-    private static void testClear() {
-        fillData();
-
-        arrayStorage.clear();
-        for (Resume resume : arrayStorage.storage) {
-            if (resume != null) {
-                System.out.println("method clear contains mistakes");
-                break;
-            }
-        }
-        if (arrayStorage.size() != 0) {
-            System.out.println("method clear contains mistakes");
-        }
     }
 
     private static void testSave() {
@@ -98,6 +83,21 @@ public class MainTestArray {
         arrayStorage.delete(uuidForDelete);
         if (arrayStorage.size() != initSize - 1 || arrayStorage.get(uuidForDelete) != null || arrayStorage.storage[initSize - 1] != null) {
             System.out.println("method delete contains mistakes");
+        }
+    }
+
+    private static void testClear() {
+        fillData();
+
+        arrayStorage.clear();
+        for (Resume resume : arrayStorage.storage) {
+            if (resume != null) {
+                System.out.println("method clear contains mistakes");
+                break;
+            }
+        }
+        if (arrayStorage.size() != 0) {
+            System.out.println("method clear contains mistakes");
         }
     }
 
